@@ -1,0 +1,28 @@
+// just give up to modify this teadious problem
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        const int row = matrix.size();
+        const int col = matrix[0].size();
+        
+        int setRow[row] = {0};
+        int setCol[col] = {0};
+        
+        for(int i = 0; i < row; ++i)
+            for(int j = 0; j < col; ++j)
+                if(matrix[i][j]==0)
+                    setRow[i] = setCol[j] = 1;
+        
+        for(int i = 0; i < row; ++i)
+            if(setRow[i] == 1){
+                matrix[i] = vector<int>(col, 0);    
+            }
+            else{
+                for(int j = 0; j < col; ++j)
+                    if(setCol[j] == 1)
+                        matrix[i][j]=0;
+                
+            }
+    }
+};
