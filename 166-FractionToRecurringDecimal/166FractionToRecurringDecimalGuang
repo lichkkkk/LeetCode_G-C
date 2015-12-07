@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string fractionToDecimal(int numerator, int denominator) {
+        
+        //http://blog.csdn.net/u012162613/article/details/41998617
+        if(numerator == 0) return string("0");
+        string result;
+        if(numerator < 0 ^ denominator < 0) result +="-";
+        
+        long long int n = numerator;
+        long long int d = denominator;
+        n = abs(n);
+        d = abs(d); 
+        result += to_string(n/d);
+        long long int r= n%d;
+        if(r == 0) return result;
+        else result += ".";
+        
+        unordered_map<int, int> m;
+        while(r){
+            if(m.find(r) != m.end()){
+                result.insert(m[r], 1, '(');
+                result += ")";
+                break;
+            }
+            m[r] = result.size();
+            r *=10;
+            result += to_string(r/d);
+            r %=d;
+        }
+        return result;
+    }
+};
