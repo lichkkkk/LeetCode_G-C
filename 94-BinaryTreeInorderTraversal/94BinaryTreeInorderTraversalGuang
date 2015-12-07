@@ -1,0 +1,76 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+/*
+    vector<int> res;
+    vector<int> inorderTraversal(TreeNode* root) {
+        inOrder(root);
+        return res;
+    }
+    
+    void inOrder(TreeNode * root){
+        if(!root) return;
+        inOrder(root->left);
+        res.push_back(root->val);
+        inOrder(root->right);
+    }
+*/
+//http://blog.csdn.net/linhuanmars/article/details/20187257
+/*
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        vector<TreeNode *> S;
+
+        while(root || !S.empty()){
+            if(root == NULL){
+                root = S.back();
+                S.pop_back();
+                res.push_back(root->val);
+                root = root ->right;
+            }else{
+                S.push_back(root);
+                root = root->left;
+            }
+        }
+        return res;
+    }
+*/
+
+// constant space implementation
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        TreeNode * cur = root;
+        TreeNode * pre = NULL;
+        while(cur){
+            if(cur->left == NULL){
+                res.push_back(cur->val);
+                cur = cur->right;
+            }
+            else{
+                pre = cur->left;
+                while(pre->right && pre->right != cur)
+                    pre = pre->right;
+                if(pre->right == NULL){
+                    pre->right = cur;
+                    cur = cur->left;
+                }else{
+                    pre->right = NULL;
+                    res.push_back(cur->val);
+                    cur = cur->right;
+                }
+            }
+        }
+        return res;
+    }
+
+
+};
