@@ -1,0 +1,69 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+//can be done in O(n) time, using return smartly
+    TreeNode* sortedListToBST(ListNode* head) {
+        int len = 0; 
+        auto cur = head;
+        while(cur){
+            ++len;
+            cur = cur->next;
+        }
+        return help(head, 1, len);
+    }
+    
+    TreeNode * help(ListNode * &head, int start, int end){
+        if(start > end) return NULL;
+        int middle = start + (end - start)/2;
+        auto leftChild = help(head, start, middle-1);
+        auto t = new TreeNode(head->val); // head NULL?  not possible head always point to middle
+        head = head->next;
+        auto rightChild = help(head, middle+1, end);
+        // head is already point to L[end+1]?
+        t->left = leftChild;
+        t->right = rightChild;
+        return t;
+    }
+
+
+
+
+/*
+   // this is O(nlogn)
+    TreeNode* sortedListToBST(ListNode* head) {
+        ListNode* slow, * fast, * pre;
+        pre = NULL;
+        slow = fast = head;
+        while(fast && fast->next){
+            pre = slow;
+            slow = slow->next;
+            fast = fast->next;
+            if(fast) fast = fast->next;
+            else break;
+        }
+        if(!slow) return NULL;
+        auto root = new TreeNode(slow->val);
+        root->right = sortedListToBST(slow->next);
+        if(pre)pre->next = NULL;
+        if(slow == head)root->left = NULL;
+        else root->left =  sortedListToBST(head);
+        return root;
+    }
+    */ 
+};
