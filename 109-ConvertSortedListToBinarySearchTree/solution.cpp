@@ -2,7 +2,7 @@
  * Use recursion to solve BST problems.
  * Use dummy node.
  *
- * Running Time: O(n) Space: O(h)
+ * Running Time: O(nlogn) Space: O(h)
  * Chang Li at UC San Diego
  * Dec. 15, 2015
  */
