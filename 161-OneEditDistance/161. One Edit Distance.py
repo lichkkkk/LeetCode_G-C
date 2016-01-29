@@ -25,11 +25,9 @@ class Solution(object):
                     j+=1
                 elif i < len1 - 1 and s[i+1] ==t[j]:
                     i+=1
-                elif i < len1 - 1 and j != len2 - 1 and s[i+1]==t[j+1] or (i == len1-1 and j == len2-1):
+                else:
                     i+=1
                     j+=1
-                else:
-                    return False
                 distance+=1
         distance += max(len1-i,len2-j)
         return True if distance == 1 else False
