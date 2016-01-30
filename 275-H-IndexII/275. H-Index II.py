@@ -3,7 +3,7 @@ __author__ = 'liuxiyun'
 # Follow up for H-Index: What if the citations array is sorted in ascending order? Could you optimize your algorithm?
 # The basic idea of this solution is
 # First reverse the list
-# THen, use binary search to find the minimum index such that
+# THen, use binary search to find the maximum index such that
 # citations[index] >= index + 1
 
 # After finding this index, the answer is index + 1.
