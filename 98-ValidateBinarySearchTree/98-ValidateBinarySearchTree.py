@@ -1,6 +1,6 @@
 class Solution(object):
     def isValidBST(self, root):
-        bound = 2147483649 + 10 
+        bound = 1<<33 
         return self.helper(root, -bound, bound)
     def helper(self,root,l_bound,u_bound):
         if root == None:
