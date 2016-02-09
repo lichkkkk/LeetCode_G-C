@@ -25,14 +25,14 @@ class Solution(object):
         if n==1:
             return cur
         for loop in range(1,n):
-            i,j =0,0
+            i=0
             new=''
             while i<len(cur) and j<len(cur):
+                j=i
                 while j+1<len(cur) and cur[j]==cur[j+1]:
                     j=j+1
                 length=j-i+1
                 new=new+str(length)+cur[i]
                 i=j+1
-                j+=1
             cur=new
         return cur
