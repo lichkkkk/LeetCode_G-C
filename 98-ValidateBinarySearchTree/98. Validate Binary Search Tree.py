@@ -22,13 +22,18 @@ class Solution(object):
             return True
         return self.helper(root,-2147483649,2147483648)
     def helper(self,root,l_bound,u_bound,left_child):
-        if root == None:
-            return True
-        if root.left !=None and  (root.left.val<=l_bound or root.left.val >= root.val):
-            return False
-        if root.right !=None and  (root.right.val<=root.val or root.right.val >= u_bound):
-            return False
-        return self.helper(root.left,l_bound,root.val) and self.helper(root.right,root.val,u_bound)
+        left,right = True,True
+        if node.left !=None:
+            if l_bound<node.left.val<node.val:
+                left = self.helper(node.left,l_bound,node.val)
+            else:
+                return False
+        if node.right !=None:
+            if node.val<node.right.val< u_bound:
+                right = self.helper(node.right,node.val,u_bound)
+            else:
+                return False
+        return left and right
 
 
 #Test case:
