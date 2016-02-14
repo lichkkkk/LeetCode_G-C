@@ -5,11 +5,9 @@ public:
     vector<vector<char>> b;
     void intial(){
         int choices = 0b111111111;
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < 9; i++)
             rows_choices.push_back(choices);
-            cols_choices.push_back(choices);
-            blks_choices.push_back(choices);
-        }
+        blks_choices = cols_choices = rows_choices;
         for(int i = 0; i < 9; i++)
             for(int j = 0; j < 9; j++)
                 if(b[i][j] == '.')
