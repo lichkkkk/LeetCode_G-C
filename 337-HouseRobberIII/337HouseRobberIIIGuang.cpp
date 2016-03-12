@@ -9,8 +9,8 @@
  */
 class Solution {
 public:
-    map<TreeNode*, int> Mcan;
-    map<TreeNode*, int> Mcannot;
+    unordered_map<TreeNode*, int> Mcan; 
+    unordered_map<TreeNode*, int> Mcannot;
     int rob(TreeNode* root) {
         return try_steal(root, true);
     }
