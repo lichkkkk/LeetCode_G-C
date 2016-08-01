@@ -28,9 +28,6 @@ public:
     
     string makeLine(const vector<string>& words, int length,
                     int additional_space_num, bool last_line) {
-        if (words.size() == 1) {
-            return words.front() + string(length-words.front().size(), ' ');
-        }
         string line = "";
         for (int i=0; i<words.size()-1; ++i) {
             line += words[i];
@@ -44,7 +41,7 @@ public:
             }
         }
         line += words.back();
-        if (last_line) line += string(length-line.size(), ' ');
+        if (line.size() < length) line += string(length-line.size(), ' ');
         return line;
     }
 };
