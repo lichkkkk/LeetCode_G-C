@@ -28,6 +28,11 @@ Key Points:
     9. If you are going to explain this, how stack is used and why map can
     improve the readability of the code, and some corner cases will be the
     most important things.
+    
+How To Improve:
+    1. Add more safety check. For example, we assume the input only conatins
+    parentheses. If the current input contains other characters, it will
+    break. We can add check for it and skip non-bracket character.
 """
 class Solution(object):
     def isValid(self, s):
