@@ -19,6 +19,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if len(nums) == 0:
+            return 0
         best_so_far = nums[0] # initialize it with the first element. If the array only has one element, then it's the answer
         curr_sum = 0 # the sum of previous elements that we have not discarded
         for n in nums: # scan from left to right
