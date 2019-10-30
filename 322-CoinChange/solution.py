@@ -12,6 +12,14 @@ Key Points:
     use of the Map.
     5. At the beginning of the helper, we check several special cases and return some simple
     answer for them, this is to prevent them entering an endless loop.
+
+How to improve:
+    1. We are using recursion here. If the amount is too large, we may get a stack overflow
+    error, since the depth of recursion will be very high. So, we can use a while look to replace
+    the recursion.
+    2. We can sort the coins and make it from large to small. This is kind of like the greedy
+    algorithm, but because generally large value coin will be more likely to be used, this
+    can potentially make the code faster.
 """
 class Solution(object):
     def coinChange(self, coins, amount):
