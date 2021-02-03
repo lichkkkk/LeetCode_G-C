@@ -1,4 +1,11 @@
 class Solution:
+    
+    ops = {
+        '+': lambda x, y: x + y,
+        '-': lambda x, y: x - y,
+        '*': lambda x, y: x * y
+    }
+        
     def diffWaysToCompute(self, input: str) -> List[int]:
         return self.helper(input, {})
     
@@ -18,12 +25,7 @@ class Solution:
     
     def merge(self, ch, lres, rres):
         res = []
-        ops = {
-            '+': lambda x, y: x + y,
-            '-': lambda x, y: x - y,
-            '*': lambda x, y: x * y
-        }
         for l in lres:
             for r in rres:
-                res.append(ops[ch](l, r))
+                res.append(self.ops[ch](l, r))
         return res
