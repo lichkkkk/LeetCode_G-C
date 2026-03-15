@@ -1,5 +1,5 @@
 class Solution:
-    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+    def validWordAbbreviation2(self, word: str, abbr: str) -> bool:
         abbr_split = []
         l, r = 0, 1
         while r <= len(abbr):
@@ -26,3 +26,27 @@ class Solution:
             if word[i] != abbr_expand[i] and abbr_expand[i] != '.':
                 return False
         return True
+
+    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+        pw, pa = 0, 0
+        while pa < len(abbr):
+            if pw >= len(word):
+                return False
+            if abbr[pa].isdigit():
+                if abbr[pa] == '0':
+                    return False
+                pa_past = pa
+                pa += 1
+                while pa < len(abbr):
+                    if abbr[pa].isdigit():
+                        pa += 1
+                    else:
+                        break
+                cnt = int(abbr[pa_past:pa])
+                pw += cnt
+            else:
+                if abbr[pa] != word[pw]:
+                    return False
+                pa += 1
+                pw += 1
+        return pw == len(word)      
